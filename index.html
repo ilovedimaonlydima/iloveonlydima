@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/style.css">
+	<title>Document</title>
+</head>
+<body>
+	<div>	
+			<div class="head">	
+					<div class="name">Самый классный.</div>
+					
+			</div>	
+			<div class="status"><div class="BlurredBackground Participant__main" style=" display: flex background: radial-gradient(circle, rgb(52, 53, 52) 40%, rgb(10, 10, 10) 100%);"><img src="https://sun9-82.userapi.com/s/v1/ig2/79jxKPBJQ0-cAag_WVXGhRBjeXkm6IQdLmwWe9T8FgxMww5JAJCA96OWUyleqLYg-hN6sMrVS5GgR7kw3DGEggIn.jpg?size=200x200&quality=95&crop=177,316,479,479&ava=1&amp;quality=96&amp;crop=54,5,200,200&amp;ava=1" class="CallPhoto" alt=""></div>
+				<div class="text"><p>Нажать зелёную кнопку</p></div>
+
+
+			</div>
+			<div class="picture"></div>
+			<div class="footer">
+
+				
+				
+				<div id="mf"><img src="microphone.png" alt=""></div>
+				<div id="call" onclick="calling()"><img src="call.png" alt=""></div>
+				<div id="disable_call" onclick="stop_call()"><img src="call_disable.png" alt=""></div>
+				<div id="mute_sound"><img src="mute.png" alt=""></div>
+			
+			<div id="play" display = 'none'>
+				<audio controls="" id="play">
+					
+				 	<source src="Sound_04325.mp3" type="audio/mp3" >
+					<div class="call_button"><img src="call-disable.png" alt=""></div>
+					
+				 </audio> 
+			</div>
+	</div>
+</body>
+	<script type="text/javascript">
+
+
+
+				var timer = 1000;
+				var call_start = false;
+				var circle_shit = document.getElementsByClassName("CallPhoto")[0];
+
+				//calling()
+				
+				
+				function calling() {
+					call_start = true;
+					call_button = document.getElementById("call")
+					document.getElementsByClassName('text')[0].style.color = "white";
+					document.getElementsByClassName('text')[0].textContent = "Соединение";
+					call_button.style.display = "none";
+					call_disable_button	= document.getElementById("disable_call")
+					call_disable_button.style.display = "flex";
+					
+					soundPlayer = new Audio("Sound_04325.mp3");
+					soundPlayer.loop=true;
+					soundPlayer.play();
+					
+					(async() => {while (call_start == true){
+					    document.getElementsByClassName('text')[0].textContent += ".";
+					    circle_shit.style.borderColor = ("grey");
+					    await delay();
+					    document.getElementsByClassName('text')[0].textContent += ".";
+					    await delay();
+					    circle_shit.style.borderColor = ("white");
+					    document.getElementsByClassName('text')[0].textContent += ".";
+					    await delay();
+					    circle_shit.style.borderColor = ("grey");
+						document.getElementsByClassName('text')[0].textContent = "Соединение";
+					} console.log(document.getElementsByClassName('text')[0].textContent);})()
+				}
+				//document.getElementsByClassName('text')[0].textContent = "Ожидание";
+				
+				function stop_call(){
+					call_start = false;
+					soundPlayer.pause();
+					soundPlayer.currentTime = 0;
+					call_button.style.display = "flex";
+					call_disable_button.style.display = "none";
+					(async() => { 
+						document.getElementsByClassName('text')[0].textContent = "ПОХУЙ";
+						await delay()
+						await delay()
+						await delay()
+						document.getElementsByClassName('text')[0].textContent = "ПОХУЙ";
+						await delay()
+						document.getElementsByClassName('text')[0].style.color = "red";
+						await delay()
+						document.getElementsByClassName('text')[0].textContent = "МЫ НА ПОРЕБРИКЕ!!!";
+						circle_shit.style.borderColor = ("white");
+
+				})()
+				}
+
+				function delay() {
+				    return new Promise((resolve, reject) => {
+				        setTimeout(resolve, timer);
+				    });
+				}
+
+
+	</script>
+</html>
